@@ -52,7 +52,7 @@ You need two free accounts: one for the database, one for hosting.
    - From your computer, with that connection string set as `DATABASE_URL` in `.env`, run `npm run migrate` once to create the tables. Run `npm run seed` too if you want the demo data on the live site — **read the security note below first if so.**
 
 **2. Hosting — [Vercel](https://vercel.com)**
-   - Push this project to a GitHub repository.
+   - This project already has a git history (one commit) ready to go. Create an empty repository on GitHub, then from this folder run `git remote add origin <your-repo-url>` and `git push -u origin main`.
    - In Vercel, "Add New Project" → import that repository. It will detect Next.js automatically.
    - Under Environment Variables, add `DATABASE_URL` (the Neon connection string) and `JWT_SECRET` (a long random string — run `openssl rand -base64 32` to generate one, don't reuse the example value).
    - Deploy. You'll get a live `*.vercel.app` URL.
