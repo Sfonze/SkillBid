@@ -1,0 +1,12 @@
+"use client";
+import { useToast } from "./Providers";
+
+export default function DemoVideoFrame() {
+  const { pushToast } = useToast();
+  return (
+    <div className="video-frame" onClick={() => pushToast("Demo video coming soon — drop yours in here later.", "stamp")}>
+      <div className="play-btn">▶</div>
+      <div className="play-label">2 min · how SkillBid works</div>
+    </div>
+  );
+}
