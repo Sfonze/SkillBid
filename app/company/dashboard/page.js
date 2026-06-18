@@ -62,6 +62,7 @@ export default function CompanyDashboard() {
           </div>
           <div className="flex-gap">
             <VerifiedBadge verified={user.verified} type="vat" />
+            <button className="btn btn-ghost btn-sm" onClick={() => router.push(`/companies/${user.id}`)}>View profile</button>
             <button className="btn btn-stamp" onClick={() => router.push("/company/post-task")}>+ Post a task</button>
           </div>
         </div>

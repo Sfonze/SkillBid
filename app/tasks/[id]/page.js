@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useAuth, useToast } from "@/components/Providers";
 import { taskStatusBadge, VerifiedBadge, Modal } from "@/components/ui";
 import { fmtDate, dueLabel, ageLabel } from "@/lib/format";
@@ -58,7 +59,7 @@ export default function TaskDetail({ params }) {
           <div>
             <div className="eyebrow">{task.industry} · {task.deliverableType}</div>
             <h1 style={{ fontSize: "28px", marginTop: "8px" }}>{task.title}</h1>
-            <div className="text-soft mt-8">{sme.companyName} <VerifiedBadge verified={sme.verified} type="vat" /></div>
+            <div className="text-soft mt-8"><Link href={`/companies/${task.smeId}`} style={{ textDecoration: "underline" }}>{sme.companyName}</Link> <VerifiedBadge verified={sme.verified} type="vat" /></div>
           </div>
           {taskStatusBadge(task)}
         </div>

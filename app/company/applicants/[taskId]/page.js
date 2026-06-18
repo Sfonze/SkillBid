@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useAuth } from "@/components/Providers";
 import { VerifiedBadge, StarRow, Badge } from "@/components/ui";
 import { initials } from "@/lib/format";
@@ -58,7 +59,7 @@ export default function Applicants({ params }) {
               <div style={{ flex: 1 }}>
                 <div className="flex-between" style={{ flexWrap: "wrap", gap: "8px" }}>
                   <div>
-                    <strong>{app.student.fullName}</strong> <span className="text-faint text-sm">· {app.student.university}</span>
+                    <Link href={`/students/${app.student.id}`} style={{ textDecoration: "underline" }}><strong>{app.student.fullName}</strong></Link> <span className="text-faint text-sm">· {app.student.university}</span>
                   </div>
                   <div className="flex-gap">
                     <VerifiedBadge verified={app.student.verified} type="uni" />

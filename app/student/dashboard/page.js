@@ -42,6 +42,7 @@ export default function StudentDashboard() {
           <div className="flex-gap">
             <VerifiedBadge verified={user.verified} type="uni" />
             <StarRow score={user.rating} />
+            <button className="btn btn-ghost btn-sm" onClick={() => router.push(`/students/${user.id}`)}>View my profile</button>
           </div>
         </div>
         {!loaded ? <p className="text-faint">Loading…</p> : (
