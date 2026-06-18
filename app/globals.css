@@ -275,7 +275,7 @@ img{max-width:100%;display:block;}
   position:relative;
   padding:96px 0 112px;
   background-color:var(--nav-navy);
-  background-image:linear-gradient(180deg, rgba(11,27,61,0.90) 0%, rgba(11,27,61,0.96) 100%), url('/maastricht-hero.jpg');
+  background-image:linear-gradient(180deg, rgba(11,27,61,0.58) 0%, rgba(11,27,61,0.74) 100%), url('/maastricht-hero.jpg');
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
