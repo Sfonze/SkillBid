@@ -90,7 +90,7 @@ img{max-width:100%;display:block;}
   font-family:var(--font-mono);font-size:13px;font-weight:700;
 }
 .nav .brand-mark{background:#FFFFFF;color:var(--nav-navy);}
-.nav-links{display:flex;align-items:center;gap:22px;}
+.nav-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap;row-gap:8px;}
 .nav-link{font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);padding:6px 0;border-bottom:2px solid transparent;}
 .nav-link:hover{color:#FFFFFF;}
 .nav-link.active{color:#FFFFFF;border-bottom-color:#FFFFFF;}
@@ -512,3 +512,41 @@ footer.site-footer{border-top:1px solid var(--line-soft);padding:48px 0 36px;mar
 .founder-name{font-weight:700;font-size:17px;color:var(--ink);}
 .founder-role{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;color:var(--sage);margin:4px 0 14px;}
 .founder-blurb{color:var(--ink-soft);font-size:14.5px;line-height:1.6;}
+
+/* ===================== TALENT DIRECTORY ===================== */
+.talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media (max-width:900px){.talent-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:620px){.talent-grid{grid-template-columns:1fr;}}
+.talent-card{
+  border:1.5px solid var(--line-soft);border-radius:var(--radius);background:var(--paper-raised);
+  padding:22px;cursor:pointer;transition:border-color .15s ease, box-shadow .15s ease;
+}
+.talent-card:hover{border-color:var(--stamp);box-shadow:var(--shadow-card);}
+.talent-card-head{display:flex;gap:14px;align-items:flex-start;}
+.talent-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.talent-avatar-fallback{width:48px;height:48px;font-size:15px;flex-shrink:0;}
+.talent-name{font-weight:700;color:var(--ink);font-size:15.5px;}
+.talent-headline{color:var(--ink-soft);font-size:13.5px;margin-top:2px;}
+.talent-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.talent-tag{background:var(--paper-deep);color:var(--ink-soft);font-size:12px;padding:4px 10px;border-radius:100px;}
+
+/* ===================== PUBLIC PROFILE PAGES ===================== */
+.profile-header{display:flex;gap:20px;align-items:flex-start;}
+.profile-avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.profile-avatar-fallback{width:84px;height:84px;font-size:24px;flex-shrink:0;}
+.profile-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start;}
+@media (max-width:760px){.profile-grid{grid-template-columns:1fr;}}
+.profile-sidebar-card{background:var(--nav-navy);border-radius:var(--radius-lg);padding:26px;position:sticky;top:90px;}
+.skill-bar-row{margin-bottom:16px;}
+.skill-bar-row:last-child{margin-bottom:0;}
+.skill-bar-track{height:8px;border-radius:100px;background:var(--paper-deep);margin-top:8px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:100px;background:var(--stamp);}
+
+/* ===================== MESSAGING HUB ===================== */
+.conversation-row{
+  display:flex;gap:14px;align-items:flex-start;padding:18px;
+  border:1.5px solid var(--line-soft);border-radius:var(--radius);background:var(--paper-raised);
+  cursor:pointer;transition:border-color .15s ease;
+}
+.conversation-row:hover{border-color:var(--stamp);}
+.conversation-preview{color:var(--ink-soft);margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:480px;}

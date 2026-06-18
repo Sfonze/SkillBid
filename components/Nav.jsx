@@ -26,8 +26,7 @@ export default function Nav() {
           {!user && (
             <>
               <Link className={"nav-link" + (isActive("/tasks") ? " active" : "")} href="/tasks">Browse tasks</Link>
-              <Link className="nav-link" href="/#how-it-works">How it works</Link>
-              <Link className={"nav-link" + (isActive("/about") ? " active" : "")} href="/about">About us</Link>
+              <Link className={"nav-link" + (isActive("/talent") ? " active" : "")} href="/talent">Browse Talent</Link>
             </>
           )}
           {user?.role === "STUDENT" && (
@@ -35,27 +34,34 @@ export default function Nav() {
               <Link className={"nav-link" + (isActive("/tasks") ? " active" : "")} href="/tasks">Browse tasks</Link>
               <Link className={"nav-link" + (isActive("/basket") ? " active" : "")} href="/basket">My applications</Link>
               <Link className={"nav-link" + (isActive("/student/dashboard") ? " active" : "")} href="/student/dashboard">My tasks</Link>
+              <Link className={"nav-link" + (isActive("/messages") ? " active" : "")} href="/messages">Messages</Link>
             </>
           )}
           {user?.role === "SME" && (
             <>
               <Link className={"nav-link" + (isActive("/company/dashboard") ? " active" : "")} href="/company/dashboard">Dashboard</Link>
               <Link className={"nav-link" + (isActive("/company/post-task") ? " active" : "")} href="/company/post-task">Post a task</Link>
+              <Link className={"nav-link" + (isActive("/talent") ? " active" : "")} href="/talent">Browse Talent</Link>
+              <Link className={"nav-link" + (isActive("/messages") ? " active" : "")} href="/messages">Messages</Link>
             </>
           )}
+          <Link className={"nav-link" + (isActive("/about") ? " active" : "")} href="/about">About us</Link>
+          <Link className={"nav-link" + (isActive("/pricing") ? " active" : "")} href="/pricing">Pricing</Link>
+          <Link className={"nav-link" + (isActive("/faq") ? " active" : "")} href="/faq">FAQ</Link>
+          <Link className={"nav-link" + (isActive("/contact") ? " active" : "")} href="/contact">Contact</Link>
         </div>
         <div className="nav-actions">
           {user && <NotificationBell />}
           {!user && (
             <>
-              <Link className="btn btn-ghost btn-sm hidden-mobile" href="/login">Log in</Link>
+              <Link className="btn btn-ghost btn-sm hidden-mobile nav-ghost-btn" href="/login">Log in</Link>
               <Link className="btn btn-stamp btn-sm" href="/signup">Sign up</Link>
             </>
           )}
           {user && (
             <>
-              <span className="text-sm text-soft hidden-mobile mono">{user.name}</span>
-              <button className="btn btn-ghost btn-sm" onClick={handleLogout}>Log out</button>
+              <span className="text-sm hidden-mobile mono nav-username">{user.name}</span>
+              <button className="btn btn-ghost btn-sm nav-ghost-btn" onClick={handleLogout}>Log out</button>
             </>
           )}
         </div>

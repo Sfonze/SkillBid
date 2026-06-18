@@ -16,6 +16,11 @@ function daysFromNow(n) {
 function daysAgo(n) {
   return daysFromNow(-n);
 }
+function hoursAgo(n) {
+  const d = new Date();
+  d.setHours(d.getHours() - n);
+  return d;
+}
 
 async function main() {
   console.log("Clearing existing data...");
@@ -25,33 +30,41 @@ async function main() {
 
   console.log("Creating SMEs...");
   const [greenfields] = await sql`INSERT INTO users (email, password_hash, role) VALUES ('hr@greenfieldslogistics.nl', ${pw}, 'SME') RETURNING id`;
-  await sql`INSERT INTO sme_profiles (user_id, company_name, foundation_date, vat_number, core_business, tasks_completed_before, verified)
-    VALUES (${greenfields.id}, 'Greenfields Logistics B.V.', '2014-03-01', 'NL123456789B01', 'Sustainable freight & last-mile logistics', 6, true)`;
+  await sql`INSERT INTO sme_profiles (user_id, company_name, foundation_date, vat_number, core_business, tasks_completed_before, verified, bio, location)
+    VALUES (${greenfields.id}, 'Greenfields Logistics B.V.', '2014-03-01', 'NL123456789B01', 'Sustainable freight & last-mile logistics', 6, true, 'We run electric last-mile delivery fleets across the Benelux, and regularly bring in students for research, translation, and brand work alongside our small ops team.', 'Maastricht, Netherlands')`;
 
   const [nova] = await sql`INSERT INTO users (email, password_hash, role) VALUES ('team@novastudio.nl', ${pw}, 'SME') RETURNING id`;
-  await sql`INSERT INTO sme_profiles (user_id, company_name, foundation_date, vat_number, core_business, tasks_completed_before, verified)
-    VALUES (${nova.id}, 'Nova Studio', '2019-08-12', 'NL987654321B02', 'Brand & digital design agency', 2, true)`;
+  await sql`INSERT INTO sme_profiles (user_id, company_name, foundation_date, vat_number, core_business, tasks_completed_before, verified, bio, location)
+    VALUES (${nova.id}, 'Nova Studio', '2019-08-12', 'NL987654321B02', 'Brand & digital design agency', 2, true, 'A small design studio working with early-stage startups on brand identity, pitch decks, and first-version websites.', 'Maastricht, Netherlands')`;
 
   const [vellum] = await sql`INSERT INTO users (email, password_hash, role) VALUES ('contact@vellumlegal.eu', ${pw}, 'SME') RETURNING id`;
-  await sql`INSERT INTO sme_profiles (user_id, company_name, foundation_date, vat_number, core_business, tasks_completed_before, verified)
-    VALUES (${vellum.id}, 'Vellum Legal Partners', '2021-01-20', 'BE0123XYZ', 'Corporate legal advisory', 1, false)`;
+  await sql`INSERT INTO sme_profiles (user_id, company_name, foundation_date, vat_number, core_business, tasks_completed_before, verified, bio, location)
+    VALUES (${vellum.id}, 'Vellum Legal Partners', '2021-01-20', 'BE0123XYZ', 'Corporate legal advisory', 1, false, 'We help SMEs expanding into new EU markets navigate compliance and contracts.', 'Brussels, Belgium')`;
 
   console.log("Creating students...");
   const [anna] = await sql`INSERT INTO users (email, password_hash, role) VALUES ('anna.devries@student.maastrichtuniversity.nl', ${pw}, 'STUDENT') RETURNING id`;
-  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified)
-    VALUES (${anna.id}, 'Anna de Vries', 'Maastricht University', 'anna.devries@student.maastrichtuniversity.nl', ${["English","Dutch"]}, ${["Market Research","Data Analysis","Excel"]}, 4, 4.8, true)`;
+  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified, headline, bio, location, response_time, available_from, hours_per_week, skill_levels)
+    VALUES (${anna.id}, 'Anna de Vries', 'Maastricht University', 'anna.devries@student.maastrichtuniversity.nl', ${["English","Dutch"]}, ${["Market Research","Data Analysis","Excel"]}, 4, 4.8, true,
+      'Marketing & Research Specialist', 'Second-year MSc International Business student with a strong background in marketing strategy, content creation, and market research. I have lived in Poland, Germany, and the Netherlands, so I can produce genuinely native-quality work, not just translations. I like tasks with a clear brief, a real deadline, and an SME that cares about the outcome.',
+      'Maastricht, Netherlands', 'within a few hours', '2026-07-01', 20, ${JSON.stringify([{name:"Social media",level:92},{name:"Market research",level:90},{name:"Copywriting",level:88},{name:"Excel / Sheets",level:70}])})`;
 
   const [marco] = await sql`INSERT INTO users (email, password_hash, role) VALUES ('m.tessier@ru.nl', ${pw}, 'STUDENT') RETURNING id`;
-  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified)
-    VALUES (${marco.id}, 'Marco Tessier', 'Radboud University', 'm.tessier@ru.nl', ${["English","French"]}, ${["Branding","Graphic Design","Illustration"]}, 2, 4.5, true)`;
+  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified, headline, bio, location, response_time, available_from, hours_per_week, skill_levels)
+    VALUES (${marco.id}, 'Marco Tessier', 'Radboud University', 'm.tessier@ru.nl', ${["English","French"]}, ${["Branding","Graphic Design","Illustration"]}, 2, 4.5, true,
+      'Brand & Visual Identity Designer', 'BSc Communication Design student focused on brand identity and illustration. Comfortable taking a brand from a rough idea to a finished, consistent visual system.',
+      'Nijmegen, Netherlands', 'within a day', '2026-07-15', 15, ${JSON.stringify([{name:"Branding",level:85},{name:"Illustration",level:80},{name:"Graphic design",level:90}])})`;
 
   const [julia] = await sql`INSERT INTO users (email, password_hash, role) VALUES ('julia.hoffmann@gmail.com', ${pw}, 'STUDENT') RETURNING id`;
-  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified)
-    VALUES (${julia.id}, 'Julia Hoffmann', 'Maastricht University', 'julia.hoffmann@gmail.com', ${["English","German"]}, ${["Finance","Excel Modelling"]}, 0, null, false)`;
+  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified, headline, bio, location, hours_per_week, skill_levels)
+    VALUES (${julia.id}, 'Julia Hoffmann', 'Maastricht University', 'julia.hoffmann@gmail.com', ${["English","German"]}, ${["Finance","Excel Modelling"]}, 0, null, false,
+      'Finance Student', 'First-year finance student, new to SkillBid and keen to take on my first task.',
+      'Maastricht, Netherlands', 10, ${JSON.stringify([{name:"Excel modelling",level:65},{name:"Financial analysis",level:60}])})`;
 
   const [sam] = await sql`INSERT INTO users (email, password_hash, role) VALUES ('s.okafor@student.maastrichtuniversity.nl', ${pw}, 'STUDENT') RETURNING id`;
-  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified)
-    VALUES (${sam.id}, 'Sam Okafor', 'Maastricht University', 's.okafor@student.maastrichtuniversity.nl', ${["English"]}, ${["Software","Python","Web Development"]}, 6, 4.9, true)`;
+  await sql`INSERT INTO student_profiles (user_id, full_name, university, university_email, languages, skills, completed_tasks_count, rating, verified, headline, bio, location, response_time, available_from, hours_per_week, skill_levels)
+    VALUES (${sam.id}, 'Sam Okafor', 'Maastricht University', 's.okafor@student.maastrichtuniversity.nl', ${["English"]}, ${["Software","Python","Web Development"]}, 6, 4.9, true,
+      'Web Developer & Automation', 'BSc Data Science student who builds prototypes and small automations for SMEs. I have shipped 6 small projects through SkillBid so far, ranging from landing pages to internal tools.',
+      'Maastricht, Netherlands', 'same day', '2026-06-20', 20, ${JSON.stringify([{name:"Web development",level:88},{name:"Python",level:85},{name:"No-code tools",level:75}])})`;
 
   console.log("Creating tasks + milestones...");
   async function makeTask({ smeId, title, description, industry, language, deliverableType, dueDate, remuneration, postedAt, status, allocatedStudentId }, milestoneDefs) {
@@ -149,9 +162,9 @@ async function main() {
   console.log("Creating messages...");
   await sql`INSERT INTO messages (task_id, from_user_id, from_role, text, created_at) VALUES
     (${t4.id}, ${nova.id}, 'SME', 'Hey Sam, looking forward to seeing the wireframes!', ${daysAgo(10)}),
-    (${t4.id}, ${sam.id}, 'STUDENT', 'Just submitted them on the milestone — let me know your thoughts.', ${daysAgo(10)}),
-    (${t4.id}, ${nova.id}, 'SME', 'These look great, approved! Starting on the build now?', ${daysAgo(9)}),
-    (${t4.id}, ${sam.id}, 'STUDENT', 'Yep, started today — will share a staging link once responsive QA is done.', ${daysAgo(9)})
+    (${t4.id}, ${sam.id}, 'STUDENT', 'Just submitted them on the milestone — let me know your thoughts.', ${hoursAgo(238)}),
+    (${t4.id}, ${nova.id}, 'SME', 'These look great, approved! Starting on the build now?', ${hoursAgo(216)}),
+    (${t4.id}, ${sam.id}, 'STUDENT', 'Yep, started today — will share a staging link once responsive QA is done.', ${hoursAgo(214)})
   `;
 
   console.log("Creating notifications...");

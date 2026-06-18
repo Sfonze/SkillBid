@@ -34,6 +34,9 @@ CREATE TABLE IF NOT EXISTS sme_profiles (
   tasks_completed_before INT NOT NULL DEFAULT 0,
   verified BOOLEAN NOT NULL DEFAULT false
 );
+ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS bio TEXT;
+ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS logo_url TEXT;
+ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS location TEXT DEFAULT 'Maastricht, Netherlands';
 
 CREATE TABLE IF NOT EXISTS student_profiles (
   user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
@@ -46,6 +49,14 @@ CREATE TABLE IF NOT EXISTS student_profiles (
   rating NUMERIC(3,2),
   verified BOOLEAN NOT NULL DEFAULT false
 );
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS bio TEXT;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS headline TEXT;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS location TEXT DEFAULT 'Maastricht, Netherlands';
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS avatar_url TEXT;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS response_time TEXT;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS available_from DATE;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS hours_per_week INT;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS skill_levels JSONB NOT NULL DEFAULT '[]'::jsonb;
 
 CREATE TABLE IF NOT EXISTS tasks (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

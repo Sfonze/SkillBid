@@ -2,6 +2,7 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { TicketCard, Badge } from "@/components/ui";
 import DemoVideoFrame from "@/components/DemoVideoFrame";
+import { GraduationIcon, ShieldCheckIcon, CompassIcon } from "@/components/Icon";
 
 export const dynamic = "force-dynamic";
 
@@ -95,17 +96,17 @@ export default async function Landing() {
         <div className="container">
           <div className="trust-strip">
             <div className="trust-card">
-              <div className="trust-icon">🎓</div>
+              <div className="trust-icon"><GraduationIcon /></div>
               <h3 style={{ fontSize: "16px", marginBottom: "8px" }}>University-verified, always</h3>
               <p className="text-soft text-sm">Every student account is checked against a list of recognised university email domains before they can apply to tasks.</p>
             </div>
             <div className="trust-card">
-              <div className="trust-icon">📄</div>
+              <div className="trust-icon"><ShieldCheckIcon /></div>
               <h3 style={{ fontSize: "16px", marginBottom: "8px" }}>Properly employed, not freelance</h3>
               <p className="text-soft text-sm">Adecco acts as Employer of Record for every assignment, so students are paid through real payroll, not an invoice in the dark.</p>
             </div>
             <div className="trust-card">
-              <div className="trust-icon">🧭</div>
+              <div className="trust-icon"><CompassIcon /></div>
               <h3 style={{ fontSize: "16px", marginBottom: "8px" }}>Milestones, not guesswork</h3>
               <p className="text-soft text-sm">Every task is broken into milestones with their own due dates, so both sides know exactly what's expected and when.</p>
             </div>

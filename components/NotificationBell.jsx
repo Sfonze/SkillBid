@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { BellIcon } from "./Icon";
 
 function fmtDateTime(iso) {
   if (!iso) return "—";
@@ -59,7 +60,7 @@ export default function NotificationBell() {
   return (
     <div className="relative">
       <button className="bell-btn" onClick={handleOpen} aria-label="Notifications">
-        🔔{unread > 0 && <span className="bell-dot"></span>}
+        <BellIcon size={17} />{unread > 0 && <span className="bell-dot"></span>}
       </button>
       {open && (
         <div className="notif-panel">
