@@ -26,7 +26,6 @@ export default function Nav() {
           {!user && (
             <>
               <Link className={"nav-link" + (isActive("/tasks") ? " active" : "")} href="/tasks">Browse tasks</Link>
-              <Link className={"nav-link" + (isActive("/talent") ? " active" : "")} href="/talent">Browse Talent</Link>
             </>
           )}
           {user?.role === "STUDENT" && (
@@ -40,9 +39,9 @@ export default function Nav() {
             <>
               <Link className={"nav-link" + (isActive("/company/dashboard") ? " active" : "")} href="/company/dashboard">Dashboard</Link>
               <Link className={"nav-link" + (isActive("/company/post-task") ? " active" : "")} href="/company/post-task">Post a task</Link>
-              <Link className={"nav-link" + (isActive("/talent") ? " active" : "")} href="/talent">Browse Talent</Link>
             </>
           )}
+          <Link className={"nav-link" + (isActive("/talent") ? " active" : "")} href="/talent">Find Talent</Link>
           <Link className={"nav-link" + (isActive("/about") ? " active" : "")} href="/about">About us</Link>
           <Link className={"nav-link" + (isActive("/pricing") ? " active" : "")} href="/pricing">Pricing</Link>
           <Link className={"nav-link" + (isActive("/faq") ? " active" : "")} href="/faq">FAQ</Link>
