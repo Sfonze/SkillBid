@@ -40,7 +40,7 @@ export default async function Landing() {
           <div>
             <div className="eyebrow" style={{ marginBottom: "14px" }}>STUDENT-FOUNDED · MAASTRICHT</div>
             <h1>Real tasks.<br />Real deadlines.<br />Real students.</h1>
-            <p className="hero-sub">SkillBid lets companies hand off short-term work — research, design, translation, analysis — to verified university students, with milestones, contracts and payment handled for you.</p>
+            <p className="hero-sub">SkillBid lets companies hand off short-term work (research, design, translation, analysis) to verified university students, with milestones, contracts and payment handled for you.</p>
             <div className="hero-cta">
               <Link className="btn btn-stamp" href="/signup/company">Post a task</Link>
               <Link className="btn btn-ghost" href="/tasks">Browse open tasks →</Link>
@@ -70,21 +70,21 @@ export default async function Landing() {
           <div className="section-head">
             <div className="eyebrow">How it works</div>
             <h2>One platform, two very different days.</h2>
-            <p className="section-sub">Companies get vetted talent without a hiring process. Students get real client work without leaving university — fully employed for the assignment, through Adecco.</p>
+            <p className="section-sub">Companies get vetted talent without a hiring process. Students get real client work without leaving university, fully employed for the assignment through Adecco.</p>
           </div>
           <div className="howitworks-grid">
             <div>
               <div className="how-col-head"><Badge tone="stamp">For companies</Badge></div>
               <div className="how-step"><div className="how-step-num">01</div><div><div className="how-step-title">Post the task</div><div className="how-step-desc">Describe the deliverable, set a due date, language and budget. Break it into milestones if it's a bigger piece of work.</div></div></div>
-              <div className="how-step"><div className="how-step-num">02</div><div><div className="how-step-title">Review applicants</div><div className="how-step-desc">See verified students who applied — university, rating, past tasks completed — and pick who gets the work.</div></div></div>
+              <div className="how-step"><div className="how-step-num">02</div><div><div className="how-step-title">Review applicants</div><div className="how-step-desc">See verified students who applied, their university, rating, and past tasks completed, then pick who gets the work.</div></div></div>
               <div className="how-step"><div className="how-step-num">03</div><div><div className="how-step-title">Sign once</div><div className="how-step-desc">Adecco becomes the student's employer of record for the assignment. You just approve the contract terms.</div></div></div>
-              <div className="how-step"><div className="how-step-num">04</div><div><div className="how-step-title">Review & pay per milestone</div><div className="how-step-desc">Approve each deliverable as it lands. SkillBid takes a 15% platform fee on completed tasks — no separate invoice to chase.</div></div></div>
+              <div className="how-step"><div className="how-step-num">04</div><div><div className="how-step-title">Review & pay per milestone</div><div className="how-step-desc">Approve each deliverable as it lands. SkillBid takes a 15% platform fee on completed tasks, no separate invoice to chase.</div></div></div>
             </div>
             <div>
               <div className="how-col-head"><Badge tone="sage">For students</Badge></div>
               <div className="how-step"><div className="how-step-num">01</div><div><div className="how-step-title">Verify your university</div><div className="how-step-desc">Sign up with your university email and we confirm you're currently enrolled.</div></div></div>
               <div className="how-step"><div className="how-step-num">02</div><div><div className="how-step-title">Apply to tasks</div><div className="how-step-desc">Browse open tasks by industry, language or deadline, and apply with a short note. Track every application in your basket.</div></div></div>
-              <div className="how-step"><div className="how-step-num">03</div><div><div className="how-step-title">Get hired properly</div><div className="how-step-desc">If you're picked, Adecco employs you for the task — so you're paid and insured like any other short-term job.</div></div></div>
+              <div className="how-step"><div className="how-step-num">03</div><div><div className="how-step-title">Get hired properly</div><div className="how-step-desc">If you're picked, Adecco employs you for the task, so you're paid and insured like any other short-term job.</div></div></div>
               <div className="how-step"><div className="how-step-num">04</div><div><div className="how-step-title">Deliver milestone by milestone</div><div className="how-step-desc">Submit work against each milestone, message the company directly, and get paid as each one is approved.</div></div></div>
             </div>
           </div>
@@ -129,7 +129,7 @@ export default async function Landing() {
             <div>
               <div className="eyebrow" style={{ color: "rgba(248,248,242,0.6)", marginBottom: "10px" }}>OUR STORY</div>
               <h2>Started by students, two streets from Maastricht University.</h2>
-              <p>We kept seeing the same gap: companies with small, well-defined tasks and no time to hire for them, and students next door with the exact skills to do them. SkillBid is the bridge — built by students who were on both sides of that gap.</p>
+              <p>We kept seeing the same gap: companies with small, well-defined tasks and no time to hire for them, and students next door with the exact skills to do them. SkillBid is the bridge, built by students who were on both sides of that gap.</p>
             </div>
             <Link className="btn btn-stamp" href="/about">Read our story →</Link>
           </div>

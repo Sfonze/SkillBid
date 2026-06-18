@@ -2,7 +2,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 
 export const metadata = {
-  title: "SkillBid — Real tasks. Verified students.",
+  title: "SkillBid: Real tasks. Verified students.",
   description: "SkillBid connects companies with short-term tasks to verified university students, employed via Adecco for the duration of each assignment.",
 };
 

@@ -52,7 +52,7 @@ export default function ContractFlow({ params }) {
   }
   async function signStudent() {
     const res = await fetch(`/api/contracts/${taskId}/sign-student`, { method: "POST" });
-    if (res.ok) { pushToast("Contract signed — task workspace unlocked.", "sage"); load(); }
+    if (res.ok) { pushToast("Contract signed, task workspace unlocked.", "sage"); load(); }
   }
 
   return (
@@ -108,7 +108,7 @@ export default function ContractFlow({ params }) {
               <label className="checkbox-row mt-16"><input type="checkbox" checked={agreeStudent} onChange={(e) => setAgreeStudent(e.target.checked)} /> I agree to these terms and to being employed by Adecco for the duration of this assignment.</label>
               <button className="btn btn-sage btn-block mt-16" disabled={!agreeStudent || !typedNameStudent.trim()} onClick={signStudent}>Sign contract</button>
             </div>
-          ) : <div className="empty-state mt-24"><h3>Waiting on {student.fullName}</h3><p>The company has signed — waiting on the employee&apos;s signature.</p></div>
+          ) : <div className="empty-state mt-24"><h3>Waiting on {student.fullName}</h3><p>The company has signed. Now waiting on the employee&apos;s signature.</p></div>
         )}
 
         {contract.status === "SIGNED" && (

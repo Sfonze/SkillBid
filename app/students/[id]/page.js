@@ -46,9 +46,9 @@ export default function StudentProfile({ params }) {
 
         <div className="stat-row mt-32">
           <div className="stat-card"><div className="stat-num">{student.completedTasksCount}</div><div className="stat-label">Tasks completed</div></div>
-          <div className="stat-card"><div className="stat-num">{student.rating ? student.rating.toFixed(1) : "—"}</div><div className="stat-label">Average rating</div></div>
+          <div className="stat-card"><div className="stat-num">{student.rating ? student.rating.toFixed(1) : "N/A"}</div><div className="stat-label">Average rating</div></div>
           <div className="stat-card"><div className="stat-num">{student.university}</div><div className="stat-label" style={{ textTransform: "none" }}>University</div></div>
-          <div className="stat-card"><div className="stat-num">{student.hoursPerWeek ? `${student.hoursPerWeek}h` : "—"}</div><div className="stat-label">Available per week</div></div>
+          <div className="stat-card"><div className="stat-num">{student.hoursPerWeek ? `${student.hoursPerWeek}h` : "N/A"}</div><div className="stat-label">Available per week</div></div>
         </div>
 
         <div className="profile-grid mt-32">

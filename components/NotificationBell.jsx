@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { BellIcon } from "./Icon";
 
 function fmtDateTime(iso) {
-  if (!iso) return "—";
+  if (!iso) return "Not set";
   const d = new Date(iso);
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }) + " · " + d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
 }

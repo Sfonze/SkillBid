@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Badge } from "./ui";
 import { fmtDate, dueLabel } from "@/lib/format";
 
-const MILESTONE_LABEL = { PENDING: "Not started", SUBMITTED: "Submitted — awaiting review", APPROVED: "Approved", CHANGES_REQUESTED: "Changes requested" };
+const MILESTONE_LABEL = { PENDING: "Not started", SUBMITTED: "Submitted, awaiting review", APPROVED: "Approved", CHANGES_REQUESTED: "Changes requested" };
 const MILESTONE_TONE = { PENDING: "ink", SUBMITTED: "stamp", APPROVED: "sage", CHANGES_REQUESTED: "clay" };
 
 export default function MilestoneRow({ milestone, index, isSme, isStudent, onSubmit, onApprove, onRequestChanges }) {

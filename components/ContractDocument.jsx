@@ -6,7 +6,7 @@ export default function ContractDocument({ contract, task, sme, student }) {
   return (
     <div className="doc">
       <div className="eyebrow">Employment assignment agreement</div>
-      <h3 className="mt-8">Adecco — Employer of Record</h3>
+      <h3 className="mt-8">Adecco, Employer of Record</h3>
       <p className="text-faint text-sm">Reference {contract.id.slice(0, 8).toUpperCase()} · Generated for SkillBid task {task.id.slice(0, 8).toUpperCase()}</p>
 
       <div className="doc-section-title">Parties</div>
@@ -27,9 +27,9 @@ export default function ContractDocument({ contract, task, sme, student }) {
       <div className="doc-row"><strong>Net payable to employee (via Adecco payroll)</strong><strong>{money(contract.terms.netToStudent)}</strong></div>
 
       <div className="doc-section-title">Employee details on file</div>
-      <div className="doc-row"><span>Address</span><span>{contract.studentInfo.address || "—"}</span></div>
-      <div className="doc-row"><span>IBAN</span><span>{contract.studentInfo.iban || "—"}</span></div>
-      <div className="doc-row"><span>Tax ID</span><span>{contract.studentInfo.taxId || "—"}</span></div>
+      <div className="doc-row"><span>Address</span><span>{contract.studentInfo.address || "Not provided"}</span></div>
+      <div className="doc-row"><span>IBAN</span><span>{contract.studentInfo.iban || "Not provided"}</span></div>
+      <div className="doc-row"><span>Tax ID</span><span>{contract.studentInfo.taxId || "Not provided"}</span></div>
 
       <div className="doc-section-title">Signatures</div>
       <div className="field-row">

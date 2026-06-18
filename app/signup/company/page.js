@@ -65,7 +65,7 @@ export default function SignupSme() {
                 <label className="field-label">VAT number</label>
                 <input className={"input" + (errors.vatNumber ? " has-error" : "")} value={form.vatNumber} onChange={(e) => set("vatNumber", e.target.value.toUpperCase())} placeholder="NL123456789B01" />
                 {errors.vatNumber && <div className="field-error">{errors.vatNumber}</div>}
-                <div className="field-hint">We check the format automatically — a real VAT registry check would run before going live.</div>
+                <div className="field-hint">We check the format automatically. A real VAT registry check would run before going live.</div>
               </div>
             </div>
             <div className="field">

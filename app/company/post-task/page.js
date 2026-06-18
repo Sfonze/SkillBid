@@ -51,7 +51,7 @@ export default function PostTask() {
       setErrors({ form: d.error || "Something went wrong." });
       return;
     }
-    pushToast("Task posted — you'll be notified when students apply.", "sage");
+    pushToast("Task posted, you'll be notified when students apply.", "sage");
     router.push("/company/dashboard");
   }
 
@@ -62,12 +62,12 @@ export default function PostTask() {
       <div className="container" style={{ maxWidth: "720px" }}>
         <div className="eyebrow">New task</div>
         <h2 className="mt-8">Describe what you need done</h2>
-        <p className="section-sub mt-8" style={{ marginBottom: "28px" }}>Be specific — a clear brief gets better applicants.</p>
+        <p className="section-sub mt-8" style={{ marginBottom: "28px" }}>Be specific, a clear brief gets better applicants.</p>
         <div className="card card-pad">
           <form onSubmit={submit}>
             <div className="field">
               <label className="field-label">Task title</label>
-              <input className={"input" + (errors.title ? " has-error" : "")} value={form.title} onChange={(e) => set("title", e.target.value)} placeholder="e.g. Market entry research — Benelux e-bike rental" />
+              <input className={"input" + (errors.title ? " has-error" : "")} value={form.title} onChange={(e) => set("title", e.target.value)} placeholder="e.g. Market entry research for Benelux e-bike rental" />
               {errors.title && <div className="field-error">{errors.title}</div>}
             </div>
             <div className="field">

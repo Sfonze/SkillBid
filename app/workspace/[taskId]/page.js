@@ -107,7 +107,7 @@ export default function Workspace({ params }) {
         <h3 style={{ fontSize: "18px", marginTop: "28px", marginBottom: "12px" }}>Messages</h3>
         <div className="card card-pad">
           <div className="msg-thread">
-            {messages.length === 0 && <div className="text-faint text-sm">No messages yet — say hello.</div>}
+            {messages.length === 0 && <div className="text-faint text-sm">No messages yet, say hello.</div>}
             {messages.map((m) => {
               const mine = m.fromRole === user.role && m.fromUserId === user.id;
               return (

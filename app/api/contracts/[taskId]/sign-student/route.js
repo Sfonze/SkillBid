@@ -15,7 +15,7 @@ export async function POST(request, { params }) {
   if (contract.status !== "PENDING_STUDENT_SIGNATURE") return NextResponse.json({ error: "Not ready for this step." }, { status: 400 });
 
   await db`UPDATE contracts SET status = 'SIGNED', signed_at_student = now() WHERE id = ${contract.id}`;
-  await notify(task.sme_id, `Contract fully signed — task is now in progress`, { view: "task-workspace", taskId });
+  await notify(task.sme_id, `Contract fully signed, task is now in progress`, { view: "task-workspace", taskId });
 
   return NextResponse.json({ ok: true });
 }

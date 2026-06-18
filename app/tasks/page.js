@@ -72,7 +72,7 @@ export default function BrowseTasks() {
         </div>
 
         {loaded && filtered.length === 0 && (
-          <div className="empty-state"><h3>No tasks match those filters</h3><p>Try clearing a filter, or check back soon — new tasks are posted regularly.</p></div>
+          <div className="empty-state"><h3>No tasks match those filters</h3><p>Try clearing a filter, or check back soon, new tasks are posted regularly.</p></div>
         )}
 
         <div className="list-stack">

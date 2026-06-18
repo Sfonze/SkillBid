@@ -24,7 +24,7 @@ export async function POST(request, { params }) {
     await db`UPDATE tasks SET status = 'COMPLETED' WHERE id = ${task.id}`;
     await db`UPDATE student_profiles SET completed_tasks_count = completed_tasks_count + 1 WHERE user_id = ${task.allocated_student_id}`;
     await db`UPDATE sme_profiles SET tasks_completed_before = tasks_completed_before + 1 WHERE user_id = ${task.sme_id}`;
-    await notify(task.allocated_student_id, `Task "${task.title}" complete — payment released`, { view: "task-workspace", taskId: task.id });
+    await notify(task.allocated_student_id, `Task "${task.title}" complete, payment released`, { view: "task-workspace", taskId: task.id });
     await notify(task.sme_id, `Task "${task.title}" marked complete`, { view: "task-workspace", taskId: task.id });
   }
 

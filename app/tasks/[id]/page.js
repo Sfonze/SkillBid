@@ -47,7 +47,7 @@ export default function TaskDetail({ params }) {
       return;
     }
     setShowApply(false);
-    pushToast('Application sent — track it from "My applications".', "sage");
+    pushToast('Application sent. Track it from "My applications".', "sage");
     setMyApplications((apps) => [...apps, { taskId: task.id }]);
   }
 

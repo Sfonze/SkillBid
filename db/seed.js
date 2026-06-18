@@ -82,7 +82,7 @@ async function main() {
   }
 
   const t1 = await makeTask({
-    smeId: greenfields.id, title: "Market entry research — Benelux e-bike rental",
+    smeId: greenfields.id, title: "Market entry research for Benelux e-bike rental",
     description: "We are evaluating a launch of short-term e-bike rental stations across mid-size Benelux cities. We need a structured market scan: competitor pricing, regulatory constraints per country, and a recommendation on which 3 cities to pilot in first.",
     industry: "Logistics", language: "English", deliverableType: "Market research report", dueDate: daysFromNow(21), remuneration: 450, postedAt: daysAgo(2), status: "OPEN",
   }, [
@@ -114,7 +114,7 @@ async function main() {
     industry: "Software & IT", language: "English", deliverableType: "Website / landing page", dueDate: daysFromNow(9), remuneration: 600, postedAt: daysAgo(20), status: "IN_PROGRESS", allocatedStudentId: sam.id,
   }, [
     { title: "Wireframes", dueDate: daysAgo(10), status: "APPROVED", note: "Low-fi wireframes for all 3 pages, approved as-is.", submittedAt: daysAgo(11) },
-    { title: "Build & responsive QA", dueDate: daysAgo(2), status: "SUBMITTED", note: "Prototype link: skillbid-demo.example/proto-v1 — tested on mobile + desktop widths.", submittedAt: daysAgo(2) },
+    { title: "Build & responsive QA", dueDate: daysAgo(2), status: "SUBMITTED", note: "Prototype link: skillbid-demo.example/proto-v1, tested on mobile and desktop widths.", submittedAt: daysAgo(2) },
     { title: "Final handoff & assets", dueDate: daysFromNow(7) },
   ]);
 
@@ -138,7 +138,7 @@ async function main() {
 
   console.log("Creating applications...");
   await sql`INSERT INTO applications (task_id, student_id, status, applied_at, cover_note) VALUES
-    (${t1.id}, ${anna.id}, 'PENDING', ${daysAgo(1)}, ${"I've written 3 market-entry reports before for mobility startups — happy to start immediately."}),
+    (${t1.id}, ${anna.id}, 'PENDING', ${daysAgo(1)}, ${"I've written 3 market-entry reports before for mobility startups, happy to start immediately."}),
     (${t1.id}, ${julia.id}, 'PENDING', ${daysAgo(1)}, ${"This fits well with my finance coursework, I can bring a numbers-first angle."}),
     (${t3.id}, ${marco.id}, 'ACCEPTED', ${daysAgo(14)}, ${"I focus on brand identity work, attached my portfolio link in DM."}),
     (${t3.id}, ${sam.id}, 'REJECTED', ${daysAgo(14)}, ${"I can also take on design tasks alongside dev work."}),
@@ -162,15 +162,15 @@ async function main() {
   console.log("Creating messages...");
   await sql`INSERT INTO messages (task_id, from_user_id, from_role, text, created_at) VALUES
     (${t4.id}, ${nova.id}, 'SME', 'Hey Sam, looking forward to seeing the wireframes!', ${daysAgo(10)}),
-    (${t4.id}, ${sam.id}, 'STUDENT', 'Just submitted them on the milestone — let me know your thoughts.', ${hoursAgo(238)}),
+    (${t4.id}, ${sam.id}, 'STUDENT', 'Just submitted them on the milestone, let me know your thoughts.', ${hoursAgo(238)}),
     (${t4.id}, ${nova.id}, 'SME', 'These look great, approved! Starting on the build now?', ${hoursAgo(216)}),
-    (${t4.id}, ${sam.id}, 'STUDENT', 'Yep, started today — will share a staging link once responsive QA is done.', ${hoursAgo(214)})
+    (${t4.id}, ${sam.id}, 'STUDENT', 'Yep, started today, will share a staging link once responsive QA is done.', ${hoursAgo(214)})
   `;
 
   console.log("Creating notifications...");
   await sql`INSERT INTO notifications (user_id, text, read, link_view, link_task_id, created_at) VALUES
-    (${greenfields.id}, ${"Anna de Vries applied to 'Market entry research — Benelux e-bike rental'"}, false, 'sme-applicants', ${t1.id}, ${daysAgo(1)}),
-    (${greenfields.id}, ${"Julia Hoffmann applied to 'Market entry research — Benelux e-bike rental'"}, false, 'sme-applicants', ${t1.id}, ${daysAgo(1)}),
+    (${greenfields.id}, ${"Anna de Vries applied to 'Market entry research for Benelux e-bike rental'"}, false, 'sme-applicants', ${t1.id}, ${daysAgo(1)}),
+    (${greenfields.id}, ${"Julia Hoffmann applied to 'Market entry research for Benelux e-bike rental'"}, false, 'sme-applicants', ${t1.id}, ${daysAgo(1)}),
     (${nova.id}, ${"Sam Okafor submitted the milestone 'Build & responsive QA'"}, false, 'task-workspace', ${t4.id}, ${daysAgo(2)}),
     (${sam.id}, ${"Your milestone 'Wireframes' was approved"}, true, 'task-workspace', ${t4.id}, ${daysAgo(10)}),
     (${marco.id}, 'Greenfields Logistics accepted your application', true, 'task-workspace', ${t3.id}, ${daysAgo(14)})
@@ -178,7 +178,7 @@ async function main() {
 
   console.log("Creating ratings...");
   await sql`INSERT INTO ratings (task_id, from_role, to_user_id, score, comment) VALUES
-    (${t5.id}, 'SME', ${anna.id}, 5, 'Excellent, thorough work — delivered ahead of schedule.'),
+    (${t5.id}, 'SME', ${anna.id}, 5, 'Excellent, thorough work, delivered ahead of schedule.'),
     (${t5.id}, 'STUDENT', ${vellum.id}, 4, 'Clear brief, fast payment, would work with them again.')
   `;
 

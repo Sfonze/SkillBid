@@ -48,7 +48,7 @@ export default function SignupStudent() {
   return (
     <div className="auth-shell">
       <div className="auth-card wide">
-        <div className="auth-head"><h1>Create your student account</h1><p>Use your university email — it&apos;s how we verify you&apos;re enrolled.</p></div>
+        <div className="auth-head"><h1>Create your student account</h1><p>Use your university email, it&apos;s how we verify you&apos;re enrolled.</p></div>
         <div className="card card-pad">
           <form onSubmit={submit}>
             <div className="field-row">
