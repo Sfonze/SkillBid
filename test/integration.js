@@ -214,6 +214,82 @@ async function main() {
   });
   assert(r.ok && r.data.verified === false, "SME with implausible VAT format is created as unverified");
 
+  // ================= NEW: PROFILES, TALENT DIRECTORY, MESSAGING HUB =================
+
+  // --- public student profile ---
+  r = await fetch(BASE + "/api/talent").then((x) => x.json());
+  assert(r.students.length >= 4, "Talent directory lists seeded students");
+  const annaTalent = r.students.find((s) => s.fullName === "Anna de Vries");
+  assert(annaTalent && annaTalent.headline === "Marketing & Research Specialist", "Talent listing includes headline");
+  assert(annaTalent.skillLevels.length > 0, "Talent listing includes skill levels");
+
+  r = await fetch(BASE + `/api/profile/student/${annaTalent.id}`).then((x) => x.json());
+  assert(r.student.bio.includes("MSc International Business"), "Public student profile route returns bio");
+
+  // --- public SME profile ---
+  const smeMeRes = await sme.req("GET", "/api/me");
+  const greenfieldsId = smeMeRes.data.user.id;
+  r = await fetch(BASE + `/api/profile/sme/${greenfieldsId}`).then((x) => x.json());
+  assert(r.sme.bio.includes("electric last-mile"), "Public SME profile route returns bio");
+
+  // --- student edits own profile ---
+  r = await annaActor.req("GET", "/api/profile/student/me");
+  assert(r.ok, "Student can fetch own editable profile");
+  r = await annaActor.req("PATCH", "/api/profile/student/me", {
+    headline: "Updated headline", bio: "Updated bio text.", location: "Eindhoven, Netherlands",
+    responseTime: "within an hour", hoursPerWeek: 25,
+    skillLevels: [{ name: "Excel", level: 95 }],
+  });
+  assert(r.ok && r.data.student.headline === "Updated headline", "Student profile update saves correctly");
+  r = await fetch(BASE + `/api/profile/student/${annaTalent.id}`).then((x) => x.json());
+  assert(r.student.location === "Eindhoven, Netherlands", "Updated profile reflects immediately on public route");
+
+  // unauthorized role can't edit a student profile
+  r = await sme.req("PATCH", "/api/profile/student/me", { headline: "hacked" });
+  assert(r.status === 401, "SME cannot edit a student profile via the student endpoint");
+
+  // --- SME edits own profile ---
+  r = await sme.req("PATCH", "/api/profile/sme/me", { bio: "Updated company bio.", location: "Maastricht, Netherlands" });
+  assert(r.ok && r.data.sme.bio === "Updated company bio.", "SME profile update saves correctly");
+
+  // --- messaging hub / conversations ---
+  r = await sme.req("GET", "/api/conversations");
+  assert(r.ok && Array.isArray(r.data.conversations), "SME can fetch conversation list");
+  const convoWithMarco = r.data.conversations.find((c) => c.counterpartName === "Marco Tessier");
+  assert(!!convoWithMarco, "SME (Greenfields) sees a conversation with their allocated student Marco");
+
+  const samActor = makeActor();
+  r = await samActor.req("POST", "/api/auth/login", { role: "student", email: "s.okafor@student.maastrichtuniversity.nl", password: "demo1234" });
+  assert(r.ok, "Seeded student Sam can log in");
+  r = await samActor.req("GET", "/api/conversations");
+  const convoWithNova = r.data.conversations.find((c) => c.counterpartName === "Nova Studio");
+  assert(!!convoWithNova, "Student sees a conversation with the company they're working with");
+  assert(convoWithNova.lastMessage && convoWithNova.lastMessage.text.includes("started today"), "Conversation includes the correct last message preview");
+
+  // a brand new student with no allocated tasks sees an empty conversation list
+  const freshStudent = makeActor();
+  r = await freshStudent.req("POST", "/api/auth/signup-student", {
+    fullName: "Fresh Student", universityEmail: "fresh.student@student.maastrichtuniversity.nl",
+    university: "Maastricht University", languages: ["English"], skills: [], password: "freshpass1",
+  });
+  assert(r.ok, "Fresh student account created for empty-state check");
+  r = await freshStudent.req("GET", "/api/conversations");
+  assert(r.ok && r.data.conversations.length === 0, "Student with no allocated tasks has an empty conversation list");
+
+  // ================= ACCOUNT DELETION =================
+  r = await freshStudent.req("DELETE", "/api/me");
+  assert(r.ok, "Student can delete their own account");
+
+  r = await freshStudent.req("GET", "/api/me");
+  assert(r.data.user === null, "Session is cleared after account deletion");
+
+  r = await freshStudent.req("POST", "/api/auth/login", { role: "student", email: "fresh.student@student.maastrichtuniversity.nl", password: "freshpass1" });
+  assert(r.status === 401, "Deleted account can no longer log in");
+
+  const unauthActor = makeActor();
+  r = await unauthActor.req("DELETE", "/api/me");
+  assert(r.status === 401, "An unauthenticated request cannot delete an account");
+
   console.log(`\n${pass} passed, ${fail} failed.\n`);
   process.exit(fail > 0 ? 1 : 0);
 }

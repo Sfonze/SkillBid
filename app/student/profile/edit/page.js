@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useToast } from "@/components/Providers";
+import DeleteAccountSection from "@/components/DeleteAccountSection";
 
 export default function EditStudentProfile() {
   const router = useRouter();
@@ -114,6 +115,7 @@ export default function EditStudentProfile() {
             <button className="btn btn-stamp btn-block mt-24" type="submit" disabled={submitting}>{submitting ? "Saving…" : "Save profile"}</button>
           </form>
         </div>
+        <DeleteAccountSection />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { getSession } from "@/lib/auth";
+import { getSession, clearSessionCookie } from "@/lib/auth";
 import { mapSme, mapStudent } from "@/lib/mappers";
 
 export async function GET() {
@@ -22,4 +22,12 @@ export async function GET() {
     const student = mapStudent(row);
     return NextResponse.json({ user: { ...student, role: "STUDENT", email: row.email, name: student.fullName } });
   }
+}
+
+export async function DELETE() {
+  const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Not authorized." }, { status: 401 });
+  await db`DELETE FROM users WHERE id = ${session.userId}`;
+  clearSessionCookie();
+  return NextResponse.json({ ok: true });
 }
