@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 import Nav from "./Nav";
 import Footer from "./Footer";
 import CookieBanner from "./CookieBanner";
+import MessagesFab from "./MessagesFab";
 
 const AuthContext = createContext(null);
 export function useAuth() {
@@ -55,6 +56,7 @@ export default function Providers({ children }) {
         <div className="app-main">{children}</div>
         <Footer />
         <CookieBanner />
+        <MessagesFab />
         <div className="toast-wrap">
           {toasts.map((t) => (
             <div key={t.id} className={"toast " + (t.tone === "sage" ? "toast-sage" : t.tone === "clay" ? "toast-clay" : "")}>

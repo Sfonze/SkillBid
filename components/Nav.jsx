@@ -34,7 +34,6 @@ export default function Nav() {
               <Link className={"nav-link" + (isActive("/tasks") ? " active" : "")} href="/tasks">Browse tasks</Link>
               <Link className={"nav-link" + (isActive("/basket") ? " active" : "")} href="/basket">My applications</Link>
               <Link className={"nav-link" + (isActive("/student/dashboard") ? " active" : "")} href="/student/dashboard">My tasks</Link>
-              <Link className={"nav-link" + (isActive("/messages") ? " active" : "")} href="/messages">Messages</Link>
             </>
           )}
           {user?.role === "SME" && (
@@ -42,7 +41,6 @@ export default function Nav() {
               <Link className={"nav-link" + (isActive("/company/dashboard") ? " active" : "")} href="/company/dashboard">Dashboard</Link>
               <Link className={"nav-link" + (isActive("/company/post-task") ? " active" : "")} href="/company/post-task">Post a task</Link>
               <Link className={"nav-link" + (isActive("/talent") ? " active" : "")} href="/talent">Browse Talent</Link>
-              <Link className={"nav-link" + (isActive("/messages") ? " active" : "")} href="/messages">Messages</Link>
             </>
           )}
           <Link className={"nav-link" + (isActive("/about") ? " active" : "")} href="/about">About us</Link>

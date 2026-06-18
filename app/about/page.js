@@ -3,12 +3,18 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="section">
-      <div className="container" style={{ maxWidth: "820px" }}>
-        <div className="eyebrow">About SkillBid</div>
-        <h1 style={{ fontSize: "clamp(28px,4vw,42px)", marginTop: "10px", lineHeight: 1.15 }}>
-          Built from a gap we struggled with ourselves.
-        </h1>
+    <div>
+      <section className="about-banner">
+        <div className="container">
+          <div className="eyebrow" style={{ color: "rgba(255,255,255,0.65)" }}>About SkillBid</div>
+          <h1 style={{ fontSize: "clamp(28px,4vw,42px)", marginTop: "10px", lineHeight: 1.15, color: "#FFFFFF", maxWidth: "640px" }}>
+            Built from a gap we struggled with ourselves.
+          </h1>
+        </div>
+      </section>
+
+      <div className="section">
+        <div className="container" style={{ maxWidth: "820px" }}>
         <p className="section-sub" style={{ maxWidth: "700px" }}>
           We spent our own internship searches frustrated by how few genuinely insightful opportunities were out there, and the more SMEs we spoke to, the clearer it became that the problem ran both ways: small and medium businesses simply don&apos;t have the same access to skilled, motivated talent that large companies do. SkillBid is the solution we built to close that gap, and to turn it into real value for both sides, and for the wider local economy.
         </p>
@@ -26,28 +32,36 @@ export default function About() {
             <p>To make verified university talent accessible to every SME, while giving students a portfolio-first path to professional experience.</p>
           </div>
         </div>
+        </div>
+      </div>
 
-        <h3 style={{ fontSize: "22px", marginTop: "52px", marginBottom: "24px" }}>Founders</h3>
-        <div className="founders-grid">
-          <div className="founder-profile">
-            <div className="founder-photo-wrap">
-              <Image src="/founder-sacha.jpg" alt="Sacha Fonzé" width={160} height={160} className="founder-photo" />
+      <div className="about-founders-band">
+        <div className="container" style={{ maxWidth: "820px" }}>
+          <h3 style={{ fontSize: "22px", marginBottom: "24px" }}>Founders</h3>
+          <div className="founders-grid">
+            <div className="founder-profile">
+              <div className="founder-photo-wrap">
+                <Image src="/founder-sacha.jpg" alt="Sacha Fonzé" width={160} height={160} className="founder-photo" />
+              </div>
+              <div className="founder-name">Sacha Fonzé</div>
+              <div className="founder-role">Co-founder</div>
+              <p className="founder-blurb">Spent one too many internship seasons wishing a platform like this existed, so we built it.</p>
             </div>
-            <div className="founder-name">Sacha Fonzé</div>
-            <div className="founder-role">Co-founder</div>
-            <p className="founder-blurb">Spent one too many internship seasons wishing a platform like this existed, so we built it.</p>
-          </div>
-          <div className="founder-profile">
-            <div className="founder-photo-wrap">
-              <Image src="/founder-oscar.jpg" alt="Oscar Solé" width={160} height={160} className="founder-photo" />
+            <div className="founder-profile">
+              <div className="founder-photo-wrap">
+                <Image src="/founder-oscar.jpg" alt="Oscar Solé" width={160} height={160} className="founder-photo" />
+              </div>
+              <div className="founder-name">Oscar Solé</div>
+              <div className="founder-role">Co-founder</div>
+              <p className="founder-blurb">Believes the smartest companies aren&apos;t always the biggest ones, and wants SkillBid to prove it.</p>
             </div>
-            <div className="founder-name">Oscar Solé</div>
-            <div className="founder-role">Co-founder</div>
-            <p className="founder-blurb">Believes the smartest companies aren&apos;t always the biggest ones, and wants SkillBid to prove it.</p>
           </div>
         </div>
+      </div>
 
-        <h3 style={{ fontSize: "22px", marginTop: "52px", marginBottom: "14px" }}>Why we exist</h3>
+      <div className="section">
+        <div className="container" style={{ maxWidth: "820px" }}>
+        <h3 style={{ fontSize: "22px", marginBottom: "14px" }}>Why we exist</h3>
         <p className="text-soft" style={{ lineHeight: 1.7, marginBottom: "16px" }}>
           Most freelance platforms treat students like independent contractors and leave the employment question to them. We didn&apos;t think that was good enough. Every task on SkillBid is a real, short-term employment assignment, Adecco is the legal employer of the student for its duration, which means proper payroll, the right insurance, and no grey area for anyone.
         </p>
@@ -63,6 +77,7 @@ export default function About() {
         <div className="flex-gap mt-32">
           <Link className="btn btn-stamp" href="/signup/company">Post your first task</Link>
           <Link className="btn btn-ghost" href="/signup/student">Join as a student</Link>
+        </div>
         </div>
       </div>
     </div>
