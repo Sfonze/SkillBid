@@ -63,10 +63,10 @@ export default function StudentProfile({ params }) {
                 {student.degree && <div className="student-profile-degree">{student.degree}</div>}
 
                 <div className="student-profile-badges">
+                  {student.university && <span className="profile-meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:5,verticalAlign:"middle"}}><path d="M12 4L3 8.5L12 13L21 8.5L12 4Z"/><path d="M7 10.5V15C7 15 9 17 12 17C15 17 17 15 17 15V10.5"/></svg>{student.university}</span>}
+                  {student.location && <span className="profile-meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:5,verticalAlign:"middle"}}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg>{student.location}</span>}
+                  {student.responseTime && <span className="profile-meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:5,verticalAlign:"middle"}}><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Responds {student.responseTime}</span>}
                   <VerifiedBadge verified={student.verified} type="uni" />
-                  {student.university && <span className="profile-meta-chip">🎓 {student.university}</span>}
-                  {student.location && <span className="profile-meta-chip">📍 {student.location}</span>}
-                  {student.responseTime && <span className="profile-meta-chip">⚡ Responds {student.responseTime}</span>}
                 </div>
               </div>
             </div>
@@ -215,8 +215,8 @@ export default function StudentProfile({ params }) {
               {/* Quick stats card */}
               <div className="profile-quick-stats">
                 <div className="profile-quick-stat-row">
-                  <span className="text-faint text-sm">Verified via</span>
-                  <span className="text-sm" style={{ fontWeight: 600 }}>{student.verified ? student.university : "Pending"}</span>
+                  <span className="text-faint text-sm">University</span>
+                  <span className="text-sm" style={{ fontWeight: 600 }}>{student.university || "—"}</span>
                 </div>
                 {student.completedTasksCount > 0 && (
                   <div className="profile-quick-stat-row">

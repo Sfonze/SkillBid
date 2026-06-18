@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/Providers";
-import { VerifiedBadge, StarRow } from "@/components/ui";
+import { StarRow } from "@/components/ui";
 import { initials } from "@/lib/format";
 
 export default function Talent() {
@@ -131,7 +131,9 @@ export default function Talent() {
                 )}
 
                 <div className="flex-between mt-14">
-                  <VerifiedBadge verified={s.verified} type="uni" />
+                  <span className={`talent-verify-line ${s.verified ? "talent-verify-ok" : "talent-verify-pending"}`}>
+                    {s.verified ? "✓ University verified" : "Verification pending"}
+                  </span>
                   <span className="talent-view-btn">View profile →</span>
                 </div>
               </div>

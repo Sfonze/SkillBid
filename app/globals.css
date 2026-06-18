@@ -602,14 +602,14 @@ footer.site-footer{border-top:1px solid var(--line-soft);padding:48px 0 36px;mar
 /* ===================== PROFILE PAGE REDESIGN ===================== */
 .student-profile-header{
   background:var(--nav-navy);
-  padding:36px 0 40px;
+  padding:36px 0 52px;
 }
 .student-profile-header-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
 .student-profile-header-left{display:flex;gap:20px;align-items:flex-start;}
 .student-profile-header-right{flex-shrink:0;}
 .student-profile-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid rgba(255,255,255,0.2);}
 .student-profile-avatar-fallback{width:80px;height:80px;font-size:22px;flex-shrink:0;border:3px solid rgba(255,255,255,0.2);}
-.student-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:0;}
+.student-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
 @media (max-width:720px){.student-stat-row{grid-template-columns:repeat(2,1fr);}}
 .student-stat-pill{background:var(--paper-raised);border:1.5px solid var(--line-soft);border-radius:var(--radius);padding:18px 20px;}
 .student-stat-value{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:4px;}
@@ -727,3 +727,9 @@ footer.site-footer{border-top:1px solid var(--line-soft);padding:48px 0 36px;mar
   padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
   border:1.5px solid var(--line-soft);
 }
+
+/* ===================== TALENT CARD VERIFY LINE ===================== */
+.talent-verify-line{font-size:12px;font-weight:600;letter-spacing:0.01em;}
+.talent-verify-ok{color:var(--sage);}
+.talent-verify-pending{color:var(--ink-faint);}
+.profile-meta-chip svg{display:inline-block;}
