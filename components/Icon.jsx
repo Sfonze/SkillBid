@@ -77,6 +77,14 @@ export function BellIcon({ size = 18 }) {
   );
 }
 
+export function ChatIcon({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M4 5H20V16H9L4 20V5Z" />
+    </svg>
+  );
+}
+
 export function PlayIcon({ size = 22 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">

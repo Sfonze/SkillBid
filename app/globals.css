@@ -95,8 +95,8 @@ img{max-width:100%;display:block;}
 .nav-link:hover{color:#FFFFFF;}
 .nav-link.active{color:#FFFFFF;border-bottom-color:#FFFFFF;}
 .nav-actions{display:flex;align-items:center;gap:12px;}
-.nav-ghost-btn{border-color:rgba(255,255,255,0.5);color:#FFFFFF;font-weight:700;}
-.nav-ghost-btn:hover{border-color:#FFFFFF;background:rgba(255,255,255,0.08);}
+.btn-ghost.nav-ghost-btn{border-color:rgba(255,255,255,0.5);color:#FFFFFF;font-weight:700;}
+.btn-ghost.nav-ghost-btn:hover{border-color:#FFFFFF;background:rgba(255,255,255,0.08);}
 .nav-username{color:#FFFFFF;font-weight:600;opacity:0.95;}
 .nav .bell-btn{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.4);color:#FFFFFF;}
 .nav-burger{display:none;}
@@ -176,7 +176,7 @@ img{max-width:100%;display:block;}
 .ticket-notch.top{top:-8px;}
 .ticket-notch.bottom{bottom:-8px;}
 .ticket-id{font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.04em;color:rgba(255,255,255,0.65);}
-.ticket-stub-main{font-family:var(--font-mono);font-size:13px;line-height:1.5;}
+.ticket-stub-main{font-family:var(--font-display);font-size:21px;font-weight:700;line-height:1.3;}
 .ticket-stub-label{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.65);margin-bottom:3px;}
 .ticket-title{font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:6px;}
 .ticket-desc{color:var(--ink-soft);font-size:14px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -287,6 +287,8 @@ img{max-width:100%;display:block;}
 .hero .eyebrow{color:rgba(255,255,255,0.62);}
 .hero-sub{font-size:17px;color:rgba(255,255,255,0.82);max-width:480px;margin-top:18px;line-height:1.6;}
 .hero-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+.hero .btn-ghost{border-color:rgba(255,255,255,0.55);color:#FFFFFF;font-weight:700;}
+.hero .btn-ghost:hover{border-color:#FFFFFF;background:rgba(255,255,255,0.1);}
 .hero-stats{display:flex;gap:32px;margin-top:48px;flex-wrap:wrap;}
 .hero-stat-num{font-family:var(--font-display);font-size:26px;font-weight:700;color:#FFFFFF;}
 .hero-stat-label{font-family:var(--font-mono);font-size:11.5px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em;margin-top:2px;}
@@ -301,6 +303,9 @@ img{max-width:100%;display:block;}
   background:var(--ink);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;
   color:var(--paper);position:relative;cursor:pointer;
 }
+.video-frame-large{margin-top:0;border-radius:var(--radius-lg);box-shadow:var(--shadow-pop);}
+.video-frame-large .play-btn{width:86px;height:86px;}
+.video-frame-large .play-label{font-size:14px;bottom:22px;left:22px;}
 .video-frame .play-btn{
   width:58px;height:58px;border-radius:50%;background:var(--stamp);color:white;display:flex;align-items:center;justify-content:center;
 }
@@ -550,3 +555,16 @@ footer.site-footer{border-top:1px solid var(--line-soft);padding:48px 0 36px;mar
 }
 .conversation-row:hover{border-color:var(--stamp);}
 .conversation-preview{color:var(--ink-soft);margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:480px;}
+
+/* ===================== MESSAGES BANNER (dashboard CTA) ===================== */
+.messages-banner{
+  width:100%;display:flex;align-items:center;gap:16px;
+  background:var(--nav-navy);color:#FFFFFF;border:none;border-radius:var(--radius-lg);
+  padding:20px 24px;margin-bottom:28px;cursor:pointer;text-align:left;
+  transition:transform .15s ease, box-shadow .15s ease;box-shadow:var(--shadow-card);
+}
+.messages-banner:hover{transform:translateY(-2px);box-shadow:var(--shadow-pop);}
+.messages-banner-icon{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.messages-banner-title{font-family:var(--font-display);font-weight:700;font-size:17px;}
+.messages-banner-sub{color:rgba(255,255,255,0.75);font-size:13.5px;margin-top:3px;}
+.messages-banner-arrow{font-size:22px;color:rgba(255,255,255,0.7);flex-shrink:0;}

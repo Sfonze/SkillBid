@@ -59,7 +59,6 @@ export default async function Landing() {
                 </Link>
               </div>
             )}
-            <DemoVideoFrame />
           </div>
         </div>
       </section>
@@ -89,6 +88,16 @@ export default async function Landing() {
               <div className="how-step"><div className="how-step-num">04</div><div><div className="how-step-title">Deliver milestone by milestone</div><div className="how-step-desc">Submit work against each milestone, message the company directly, and get paid as each one is approved.</div></div></div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section-tight">
+        <div className="container" style={{ maxWidth: "880px" }}>
+          <div className="section-head" style={{ textAlign: "center", margin: "0 auto 32px" }}>
+            <div className="eyebrow">See it in action</div>
+            <h2>2 minutes, the whole flow.</h2>
+          </div>
+          <DemoVideoFrame large />
         </div>
       </section>
 

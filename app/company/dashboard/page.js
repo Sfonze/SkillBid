@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/Providers";
 import { Pipeline, VerifiedBadge, taskStatusBadge } from "@/components/ui";
+import MessagesBanner from "@/components/MessagesBanner";
 import { money } from "@/lib/validators";
 
 export default function CompanyDashboard() {
@@ -68,6 +69,7 @@ export default function CompanyDashboard() {
         </div>
         {!loaded ? <p className="text-faint">Loading…</p> : (
           <>
+            <MessagesBanner />
             <div className="stat-row">
               <div className="stat-card"><div className="stat-num">{open.length}</div><div className="stat-label">Open tasks</div></div>
               <div className="stat-card"><div className="stat-num">{inProgress.length}</div><div className="stat-label">In progress</div></div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/Providers";
 import { Pipeline, VerifiedBadge, StarRow } from "@/components/ui";
+import MessagesBanner from "@/components/MessagesBanner";
 import { money } from "@/lib/validators";
 
 export default function StudentDashboard() {
@@ -47,6 +48,7 @@ export default function StudentDashboard() {
         </div>
         {!loaded ? <p className="text-faint">Loading…</p> : (
           <>
+            <MessagesBanner />
             <div className="stat-row">
               <div className="stat-card"><div className="stat-num">{active.length}</div><div className="stat-label">Active tasks</div></div>
               <div className="stat-card"><div className="stat-num">{completed.length}</div><div className="stat-label">Completed</div></div>
