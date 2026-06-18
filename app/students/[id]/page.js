@@ -33,7 +33,7 @@ export default function StudentProfile({ params }) {
   if (!student) return <div className="container section">Student not found.</div>;
 
   const isOwnProfile = user?.role === "STUDENT" && user.id === student.id;
-  const firstName = student.fullName.split(" ")[0];
+  const firstName = (student.fullName || "").split(" ")[0] || "this student";
 
   return (
     <div>
