@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useToast } from "@/components/Providers";
 import DeleteAccountSection from "@/components/DeleteAccountSection";
+import { initials } from "@/lib/format";
 
 export default function EditStudentProfile() {
   const router = useRouter();
   const { user, authLoaded } = useAuth();
   const { pushToast } = useToast();
-  const [form, setForm] = useState({ headline: "", bio: "", location: "", avatarUrl: "", responseTime: "", availableFrom: "", hoursPerWeek: "" });
+  const [form, setForm] = useState({ headline: "", degree: "", bio: "", location: "", avatarUrl: "", responseTime: "", availableFrom: "", hoursPerWeek: "" });
   const [skillLevels, setSkillLevels] = useState([{ name: "", level: 70 }]);
   const [loaded, setLoaded] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -20,7 +21,7 @@ export default function EditStudentProfile() {
       const s = d.student;
       if (s) {
         setForm({
-          headline: s.headline || "", bio: s.bio || "", location: s.location || "",
+          headline: s.headline || "", degree: s.degree || "", bio: s.bio || "", location: s.location || "",
           avatarUrl: s.avatarUrl || "", responseTime: s.responseTime || "",
           availableFrom: s.availableFrom ? String(s.availableFrom).slice(0, 10) : "",
           hoursPerWeek: s.hoursPerWeek || "",
@@ -64,19 +65,32 @@ export default function EditStudentProfile() {
         <p className="section-sub mt-8" style={{ marginBottom: "28px" }}>This is what companies see when they browse talent or review your applications.</p>
         <div className="card card-pad">
           <form onSubmit={submit}>
-            <div className="field">
-              <label className="field-label">Headline</label>
-              <input className="input" value={form.headline} onChange={(e) => set("headline", e.target.value)} placeholder="e.g. Marketing & Research Specialist" />
+            <div className="profile-edit-avatar-row">
+              {form.avatarUrl ? <img src={form.avatarUrl} alt="" className="profile-edit-avatar" /> : <div className="avatar profile-edit-avatar">{initials(user.fullName)}</div>}
+              <div style={{ flex: 1 }}>
+                <label className="field-label">Profile photo URL (optional)</label>
+                <input className="input" value={form.avatarUrl} onChange={(e) => set("avatarUrl", e.target.value)} placeholder="https://…" />
+                <div className="field-hint">Paste a link to an image you have the rights to use. Leave blank to show your initials instead.</div>
+              </div>
+            </div>
+
+            <div className="profile-edit-section-title">Basics</div>
+            <div className="field-row">
+              <div className="field">
+                <label className="field-label">Headline</label>
+                <input className="input" value={form.headline} onChange={(e) => set("headline", e.target.value)} placeholder="e.g. Marketing & Research Specialist" />
+              </div>
+              <div className="field">
+                <label className="field-label">Degree / study program</label>
+                <input className="input" value={form.degree} onChange={(e) => set("degree", e.target.value)} placeholder="e.g. MSc International Business" />
+              </div>
             </div>
             <div className="field">
               <label className="field-label">About you</label>
               <textarea className="textarea" value={form.bio} onChange={(e) => set("bio", e.target.value)} placeholder="A few sentences about your background, what you're good at, and the kind of tasks you enjoy." />
             </div>
-            <div className="field">
-              <label className="field-label">Profile photo URL (optional)</label>
-              <input className="input" value={form.avatarUrl} onChange={(e) => set("avatarUrl", e.target.value)} placeholder="https://…" />
-              <div className="field-hint">Paste a link to an image you have the rights to use. Leave blank to show your initials instead.</div>
-            </div>
+
+            <div className="profile-edit-section-title">Availability</div>
             <div className="field-row">
               <div className="field">
                 <label className="field-label">Location</label>
@@ -98,8 +112,8 @@ export default function EditStudentProfile() {
               </div>
             </div>
 
+            <div className="profile-edit-section-title">Top skills</div>
             <div className="field">
-              <label className="field-label">Top skills</label>
               <div className="text-faint text-sm" style={{ marginBottom: "10px" }}>Shown as progress bars on your profile, rate yourself honestly.</div>
               {skillLevels.map((s, i) => (
                 <div key={i} className="flex-gap mt-8" style={{ alignItems: "center" }}>

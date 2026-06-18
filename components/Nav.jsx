@@ -58,7 +58,12 @@ export default function Nav() {
           )}
           {user && (
             <>
-              <span className="text-sm hidden-mobile mono nav-username">{user.name}</span>
+              {user.role === "STUDENT" && (
+                <Link className="text-sm hidden-mobile mono nav-username" href={`/students/${user.id}`}>{user.name}</Link>
+              )}
+              {user.role === "SME" && (
+                <Link className="text-sm hidden-mobile mono nav-username" href={`/companies/${user.id}`}>{user.name}</Link>
+              )}
               <button className="btn btn-ghost btn-sm nav-ghost-btn" onClick={handleLogout}>Log out</button>
             </>
           )}

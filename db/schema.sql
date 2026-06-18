@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS sme_profiles (
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS bio TEXT;
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS logo_url TEXT;
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS location TEXT DEFAULT 'Maastricht, Netherlands';
+ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS website TEXT;
+ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS industry TEXT;
+ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS company_size TEXT;
 
 CREATE TABLE IF NOT EXISTS student_profiles (
   user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
@@ -57,6 +60,7 @@ ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS response_time TEXT;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS available_from DATE;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS hours_per_week INT;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS skill_levels JSONB NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS degree TEXT;
 
 CREATE TABLE IF NOT EXISTS tasks (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

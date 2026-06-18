@@ -14,7 +14,7 @@ export async function PATCH(request) {
   const session = await getSession();
   if (!session || session.role !== "STUDENT") return NextResponse.json({ error: "Not authorized." }, { status: 401 });
   const body = await request.json().catch(() => ({}));
-  const { headline, bio, location, avatarUrl, responseTime, availableFrom, hoursPerWeek, skillLevels } = body;
+  const { headline, bio, location, avatarUrl, responseTime, availableFrom, hoursPerWeek, skillLevels, degree } = body;
 
   if (skillLevels && (!Array.isArray(skillLevels) || skillLevels.some((s) => !s.name || typeof s.level !== "number"))) {
     return NextResponse.json({ error: "Each skill needs a name and a level from 0-100." }, { status: 400 });
@@ -29,7 +29,8 @@ export async function PATCH(request) {
       response_time = ${responseTime || null},
       available_from = ${availableFrom || null},
       hours_per_week = ${hoursPerWeek ? Number(hoursPerWeek) : null},
-      skill_levels = ${JSON.stringify(skillLevels || [])}
+      skill_levels = ${JSON.stringify(skillLevels || [])},
+      degree = ${degree || null}
     WHERE user_id = ${session.userId}
   `;
 
