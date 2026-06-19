@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useToast } from "@/components/Providers";
 import DeleteAccountSection from "@/components/DeleteAccountSection";
-import { initials } from "@/lib/format";
+import AvatarUpload from "@/components/AvatarUpload";
 
 export default function EditStudentProfile() {
   const router = useRouter();
   const { user, authLoaded } = useAuth();
   const { pushToast } = useToast();
-  const [form, setForm] = useState({ headline: "", degree: "", bio: "", location: "", avatarUrl: "", responseTime: "", availableFrom: "", hoursPerWeek: "" });
+  const [form, setForm] = useState({ headline: "", degree: "", bio: "", location: "", responseTime: "", availableFrom: "", hoursPerWeek: "" });
+  const [avatarSrc, setAvatarSrc] = useState(""); // base64 or existing URL
   const [skillLevels, setSkillLevels] = useState([{ name: "", level: 70 }]);
   const [loaded, setLoaded] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -22,10 +23,11 @@ export default function EditStudentProfile() {
       if (s) {
         setForm({
           headline: s.headline || "", degree: s.degree || "", bio: s.bio || "", location: s.location || "",
-          avatarUrl: s.avatarUrl || "", responseTime: s.responseTime || "",
+          responseTime: s.responseTime || "",
           availableFrom: s.availableFrom ? String(s.availableFrom).slice(0, 10) : "",
           hoursPerWeek: s.hoursPerWeek || "",
         });
+        setAvatarSrc(s.avatarUrl || "");
         setSkillLevels(s.skillLevels?.length ? s.skillLevels : [{ name: "", level: 70 }]);
       }
       setLoaded(true);
@@ -41,10 +43,17 @@ export default function EditStudentProfile() {
     e.preventDefault();
     setSubmitting(true);
     const cleanSkills = skillLevels.filter((s) => s.name.trim()).map((s) => ({ name: s.name.trim(), level: Number(s.level) }));
+    const isBase64 = avatarSrc && avatarSrc.startsWith("data:");
     const res = await fetch("/api/profile/student/me", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, hoursPerWeek: form.hoursPerWeek ? Number(form.hoursPerWeek) : null, skillLevels: cleanSkills }),
+      body: JSON.stringify({
+        ...form,
+        hoursPerWeek: form.hoursPerWeek ? Number(form.hoursPerWeek) : null,
+        skillLevels: cleanSkills,
+        avatarData: isBase64 ? avatarSrc : null,
+        avatarUrl: isBase64 ? null : avatarSrc,
+      }),
     });
     setSubmitting(false);
     if (res.ok) {
@@ -65,14 +74,11 @@ export default function EditStudentProfile() {
         <p className="section-sub mt-8" style={{ marginBottom: "28px" }}>This is what companies see when they browse talent or review your applications.</p>
         <div className="card card-pad">
           <form onSubmit={submit}>
-            <div className="profile-edit-avatar-row">
-              {form.avatarUrl ? <img src={form.avatarUrl} alt="" className="profile-edit-avatar" /> : <div className="avatar profile-edit-avatar">{initials(user.fullName)}</div>}
-              <div style={{ flex: 1 }}>
-                <label className="field-label">Profile photo URL (optional)</label>
-                <input className="input" value={form.avatarUrl} onChange={(e) => set("avatarUrl", e.target.value)} placeholder="https://…" />
-                <div className="field-hint">Paste a link to an image you have the rights to use. Leave blank to show your initials instead.</div>
-              </div>
-            </div>
+            <AvatarUpload
+              name={user.fullName}
+              currentSrc={avatarSrc}
+              onChange={setAvatarSrc}
+            />
 
             <div className="profile-edit-section-title">Basics</div>
             <div className="field-row">

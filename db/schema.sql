@@ -56,6 +56,7 @@ ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS bio TEXT;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS headline TEXT;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS location TEXT DEFAULT 'Maastricht, Netherlands';
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS avatar_url TEXT;
+ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS avatar_data TEXT;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS response_time TEXT;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS available_from DATE;
 ALTER TABLE student_profiles ADD COLUMN IF NOT EXISTS hours_per_week INT;
