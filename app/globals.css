@@ -754,3 +754,10 @@ footer.site-footer{border-top:1px solid var(--line-soft);padding:48px 0 36px;mar
   transition:opacity .15s ease;
 }
 .avatar-upload-info{flex:1;padding-top:4px;}
+
+/* ===================== AVATAR UPLOAD — SQUARE VARIANT (logos) ===================== */
+.avatar-upload-square{border-radius:14px;}
+.avatar-upload-square .avatar-upload-preview{border-radius:14px;}
+.avatar-upload-square .avatar-upload-placeholder{border-radius:14px;}
+.avatar-upload-square .avatar-upload-overlay{border-radius:14px;}
+.avatar-upload-square .avatar-upload-initials{border-radius:14px;}

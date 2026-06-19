@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useToast } from "@/components/Providers";
 import DeleteAccountSection from "@/components/DeleteAccountSection";
-import { initials } from "@/lib/format";
+import AvatarUpload from "@/components/AvatarUpload";
 
 const SIZES = ["1-5 employees","6-15 employees","16-50 employees","51-200 employees","200+ employees"];
 const INDUSTRIES = ["Logistics & Supply Chain","Marketing & Communications","Legal & Compliance","Technology & Software","Design & Creative","Finance & Accounting","Research & Consulting","Retail & E-commerce","Healthcare","Education","Other"];
@@ -12,7 +12,8 @@ export default function EditCompanyProfile() {
   const router = useRouter();
   const { user, authLoaded } = useAuth();
   const { pushToast } = useToast();
-  const [form, setForm] = useState({ bio: "", logoUrl: "", location: "", website: "", industry: "", companySize: "" });
+  const [form, setForm] = useState({ bio: "", location: "", website: "", industry: "", companySize: "" });
+  const [logoSrc, setLogoSrc] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -21,7 +22,10 @@ export default function EditCompanyProfile() {
     if (!user) return;
     fetch("/api/profile/sme/me").then((r) => r.json()).then((d) => {
       const s = d.sme;
-      if (s) setForm({ bio: s.bio || "", logoUrl: s.logoUrl || "", location: s.location || "", website: s.website || "", industry: s.industry || "", companySize: s.companySize || "" });
+      if (s) {
+        setForm({ bio: s.bio || "", location: s.location || "", website: s.website || "", industry: s.industry || "", companySize: s.companySize || "" });
+        setLogoSrc(s.logoUrl || "");
+      }
       setLoaded(true);
     });
   }, [authLoaded, user]);
@@ -31,7 +35,16 @@ export default function EditCompanyProfile() {
   async function submit(e) {
     e.preventDefault();
     setSubmitting(true);
-    const res = await fetch("/api/profile/sme/me", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+    const isBase64 = logoSrc && logoSrc.startsWith("data:");
+    const res = await fetch("/api/profile/sme/me", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...form,
+        logoData: isBase64 ? logoSrc : null,
+        logoUrl: isBase64 ? null : logoSrc,
+      }),
+    });
     setSubmitting(false);
     if (res.ok) { pushToast("Profile updated.", "sage"); router.push(`/companies/${user.id}`); }
     else pushToast("Something went wrong saving your profile.", "clay");
@@ -47,14 +60,14 @@ export default function EditCompanyProfile() {
         <p className="section-sub mt-8" style={{ marginBottom: "28px" }}>This is what students see when deciding whether to apply to your tasks.</p>
         <div className="card card-pad">
           <form onSubmit={submit}>
-            <div className="profile-edit-avatar-row">
-              {form.logoUrl ? <img src={form.logoUrl} alt="" className="profile-edit-avatar" /> : <div className="avatar profile-edit-avatar">{initials(user.companyName)}</div>}
-              <div style={{ flex: 1 }}>
-                <label className="field-label">Logo URL (optional)</label>
-                <input className="input" value={form.logoUrl} onChange={(e) => set("logoUrl", e.target.value)} placeholder="https://…" />
-                <div className="field-hint">Paste a link to your logo. Leave blank to show your initials instead.</div>
-              </div>
-            </div>
+            <AvatarUpload
+              name={user.companyName}
+              currentSrc={logoSrc}
+              onChange={setLogoSrc}
+              shape="square"
+              label="Company logo"
+              hint="Click or drag your logo here. JPG or PNG, max 3 MB."
+            />
 
             <div className="profile-edit-section-title">Company overview</div>
             <div className="field-row">

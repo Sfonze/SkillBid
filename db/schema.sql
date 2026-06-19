@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS sme_profiles (
 );
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS bio TEXT;
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS logo_url TEXT;
+ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS logo_data TEXT;
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS location TEXT DEFAULT 'Maastricht, Netherlands';
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS website TEXT;
 ALTER TABLE sme_profiles ADD COLUMN IF NOT EXISTS industry TEXT;

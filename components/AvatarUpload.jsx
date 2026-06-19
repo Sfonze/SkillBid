@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import { initials } from "@/lib/format";
 
-export default function AvatarUpload({ name, currentSrc, onChange }) {
+export default function AvatarUpload({ name, currentSrc, onChange, shape = "circle", label = "Profile photo", hint = "Click or drag a photo here. JPG or PNG, max 3 MB." }) {
   const inputRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   const [error, setError] = useState("");
@@ -28,7 +28,7 @@ export default function AvatarUpload({ name, currentSrc, onChange }) {
   return (
     <div className="avatar-upload-wrap">
       <div
-        className={"avatar-upload-zone" + (dragging ? " avatar-upload-dragging" : "")}
+        className={"avatar-upload-zone" + (dragging ? " avatar-upload-dragging" : "") + (shape === "square" ? " avatar-upload-square" : "")}
         onClick={() => inputRef.current?.click()}
         onDrop={onDrop}
         onDragOver={onDragOver}
@@ -45,12 +45,12 @@ export default function AvatarUpload({ name, currentSrc, onChange }) {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
           </svg>
-          <span>Upload photo</span>
+          <span>Upload</span>
         </div>
       </div>
       <div className="avatar-upload-info">
-        <div className="field-label" style={{ marginBottom: "4px" }}>Profile photo</div>
-        <div className="field-hint">Click or drag a photo here. JPG or PNG, max 3 MB.</div>
+        <div className="field-label" style={{ marginBottom: "4px" }}>{label}</div>
+        <div className="field-hint">{hint}</div>
         {currentSrc && (
           <button type="button" className="btn-text text-sm" style={{ color: "var(--clay)", marginTop: "6px" }} onClick={() => onChange("")}>
             Remove photo

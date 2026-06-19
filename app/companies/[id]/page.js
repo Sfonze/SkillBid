@@ -25,26 +25,26 @@ export default function CompanyProfile({ params }) {
     <div>
       <div className="student-profile-header">
         <div className="container" style={{ maxWidth: "900px" }}>
-          <button className="btn-text" style={{ color: "rgba(255,255,255,0.7)", marginBottom: "20px" }} onClick={() => router.push("/tasks")}>← Back to tasks</button>
+          <button className="profile-back-btn" onClick={() => router.push("/tasks")}>← Back to tasks</button>
           <div className="student-profile-header-inner">
             <div className="student-profile-header-left">
               {sme.logoUrl
                 ? <img src={sme.logoUrl} alt={sme.companyName} className="student-profile-avatar" />
-                : <div className="avatar student-profile-avatar-fallback">{initials(sme.companyName)}</div>}
+                : <div className="student-profile-avatar-initials">{initials(sme.companyName)}</div>}
               <div>
                 <h1 style={{ fontSize: "26px", color: "#FFFFFF", marginBottom: "4px" }}>{sme.companyName}</h1>
                 {sme.coreBusiness && <div style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", marginBottom: "8px" }}>{sme.coreBusiness}</div>}
-                <div className="flex-gap" style={{ flexWrap: "wrap", gap: "10px" }}>
+                <div className="student-profile-badges">
+                  {sme.location && <span className="profile-meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:5,verticalAlign:"middle"}}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg>{sme.location}</span>}
+                  {sme.industry && <span className="profile-meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:5,verticalAlign:"middle"}}><path d="M6 21V5L12 3L18 5V21"/><path d="M4 21H20"/><path d="M10 21V16H14V21"/></svg>{sme.industry}</span>}
+                  {sme.companySize && <span className="profile-meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:5,verticalAlign:"middle"}}><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.5-5.5 6-5.5s6 2.5 6 5.5"/><circle cx="17" cy="8" r="2.5"/><path d="M21 20c0-2.4-1.6-4.5-3.8-5.2"/></svg>{sme.companySize}</span>}
+                  {sme.website && <a href={sme.website} target="_blank" rel="noreferrer" className="profile-meta-chip" style={{ textDecoration: "none" }}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:5,verticalAlign:"middle"}}><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9Z"/></svg>Website</a>}
                   <VerifiedBadge verified={sme.verified} type="vat" />
-                  {sme.location && <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "13px" }}>📍 {sme.location}</span>}
-                  {sme.industry && <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "13px" }}>🏢 {sme.industry}</span>}
-                  {sme.companySize && <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "13px" }}>👥 {sme.companySize}</span>}
-                  {sme.website && <a href={sme.website} target="_blank" rel="noreferrer" style={{ color: "rgba(255,255,255,0.65)", fontSize: "13px" }}>🔗 Website</a>}
                 </div>
               </div>
             </div>
-            <div className="student-profile-header-right">
-              {isOwnProfile && <button className="btn btn-ghost btn-sm" onClick={() => router.push("/company/profile/edit")}>Edit profile</button>}
+            <div className="student-profile-header-actions">
+              {isOwnProfile && <button className="btn btn-ghost btn-sm profile-btn-light" onClick={() => router.push("/company/profile/edit")}>Edit profile</button>}
             </div>
           </div>
         </div>
